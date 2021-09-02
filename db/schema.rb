@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_09_01_141623) do
+ActiveRecord::Schema.define(version: 2021_09_02_074144) do
 
   create_table "account_histories", force: :cascade do |t|
     t.string "name"
@@ -38,6 +38,12 @@ ActiveRecord::Schema.define(version: 2021_09_01_141623) do
     t.index ["physician_id"], name: "index_appointments_on_physician_id"
   end
 
+  create_table "employees", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
   create_table "patients", force: :cascade do |t|
     t.string "name"
     t.string "desease"
@@ -48,6 +54,21 @@ ActiveRecord::Schema.define(version: 2021_09_01_141623) do
   create_table "physicians", force: :cascade do |t|
     t.string "name"
     t.string "job"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
+
+  create_table "pictures", force: :cascade do |t|
+    t.string "name"
+    t.string "imageable_type"
+    t.integer "imageable_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["imageable_type", "imageable_id"], name: "index_pictures_on_imageable"
+  end
+
+  create_table "products", force: :cascade do |t|
+    t.string "name"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
